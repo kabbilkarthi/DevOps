@@ -9,9 +9,9 @@
 
     - name: Extracting the downloaded Node Exporter
       unarchive:
-      src: /root/node_exporter-1.8.2.linux-amd64.tar.gz 
-      dest: /root/
-      remote_src: yes
+        src: /root/node_exporter-1.8.2.linux-amd64.tar.gz 
+        dest: /root/
+        remote_src: yes
     
     - name: Run Node Exporter
       command: nohup ./node_exporter &
