@@ -1,6 +1,7 @@
 ---
 - name: Node Exporter config
   hosts: all
+  gather_facts: false
   tasks:
     - name: Running Node Exporter Configuration
       get_url:
@@ -14,7 +15,7 @@
         remote_src: yes
     
     - name: Run Node Exporter
-      shell: ./node_exporter &
+      shell: nohup ./node_exporter > node_exporter.log 2>&1 &
       args:
         chdir: /root/node_exporter-1.8.2.linux-amd64
 
