@@ -18,7 +18,6 @@
       args:
         chdir: /root/node_exporter-1.8.2.linux-amd64
 
----
 - name: grafana-prometheus playbook config
   hosts: devops
   become_user: devops
