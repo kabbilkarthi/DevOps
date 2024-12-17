@@ -15,7 +15,9 @@
         remote_src: yes
     
     - name: Run Node Exporter
-      shell: nohup ./node_exporter &
+      shell: nohup ./node_exporter 
+      aysnc: 3600
+      poll: 0
       args:
         chdir: /root/node_exporter-1.8.2.linux-amd64
 
