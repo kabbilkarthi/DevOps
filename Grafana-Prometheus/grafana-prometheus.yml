@@ -1,7 +1,8 @@
 ---
 - name: Node Exporter config
   hosts: all
-  gather_facts: false
+  gather_facts: False
+  ignore_errors: True
   tasks:
     - name: Running Node Exporter Configuration
       get_url:
