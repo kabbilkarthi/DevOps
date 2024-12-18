@@ -47,6 +47,6 @@
         state: directory
 
     - name: Start the Grafana and Prometheus containers
-      command: docker-compose up -d
+      command: docker-compose build
       args:
         chdir: /home/devops
