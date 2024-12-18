@@ -1,8 +1,8 @@
 ---
 - name: Node Exporter config
   hosts: all
-  gather_facts: false
-  ignore_unreachable: true
+  gather_facts: no
+  ignore_unreachable: yes
   tasks:
     - name: Running Node Exporter Configuration
       get_url:
@@ -16,7 +16,8 @@
         remote_src: yes
 
     - name: Kill existing Node Exporter processes 
-      shell: pkill -f node_exporter || true
+      shell: pkill -f node_exporter 
+      ignore_errors: yes
     
     - name: Run Node Exporter
       shell: nohup ./node_exporter > node_exporter.log 2>&1 &
