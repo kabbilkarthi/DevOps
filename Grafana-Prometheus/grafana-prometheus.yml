@@ -15,8 +15,8 @@
         dest: /root/
         remote_src: yes
 
-    -name: Kill existing Node Exporter processes 
-     shell: pkill -f node_exporter || true
+    - name: Kill existing Node Exporter processes 
+      shell: pkill -f node_exporter || true
     
     - name: Run Node Exporter
       shell: nohup ./node_exporter > node_exporter.log 2>&1 &
