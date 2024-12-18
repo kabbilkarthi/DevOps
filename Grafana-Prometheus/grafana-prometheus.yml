@@ -47,6 +47,6 @@
         state: directory
 
     - name: Build the Grafana and Prometheus Images
-      command: docker-compose build
+      command: docker-compose build .
       args:
         chdir: /home/devops
