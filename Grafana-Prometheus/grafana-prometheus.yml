@@ -46,8 +46,7 @@
         path: /home/devops/grafana
         state: directory
 
-    - name: Build the Grafana and Prometheus Images
-      shell: | 
-        docker-compose build prometheus && docker-compose build grafana
+    - name: Start the Grafana and Prometheus containers
+      command: docker-compose up -d
       args:
         chdir: /home/devops
