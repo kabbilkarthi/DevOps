@@ -2,7 +2,7 @@
 - name: Node Exporter config
   hosts: all
   gather_facts: False
-  ignore_errors: True
+  ignore_unreachable: true
   tasks:
     - name: Running Node Exporter Configuration
       get_url:
@@ -16,7 +16,7 @@
         remote_src: yes
     
     - name: Run Node Exporter
-      shell: nohup ./node_exporter 
+      shell: nohup ./node_exporter > node_exporter.log 2>&1 &
       async: 3600
       poll: 0
       args:
@@ -48,5 +48,7 @@
 
     - name: Start the Grafana and Prometheus containers
       command: docker-compose up -d
+      async: 50
+      poll: 0
       args:
         chdir: /home/devops
