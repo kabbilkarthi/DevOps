@@ -44,7 +44,11 @@
         path: /home/devops/grafana
         state: directory
 
-    - name: Start the Grafana and Prometheus containers
-      command: docker-compose up -d
+    - name: Start the Grafana and Prometheus containers by Removing existing Containers
+      shell: |
+        docker-compose down
+        docker rmi prom/prometheus:latest
+        docker rmi grafana/grafana:latest
+        docker-compose up -d
       args:
         chdir: /home/devops
