@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   prometheus:
-    build:
-      context: ./prometheus
-      dockerfile: Dockerfile
+    image: prom/prometheus:latest
     container_name: prometheus
     ports:
       - "9090:9090"
@@ -13,9 +11,7 @@ services:
     restart: unless-stopped
 
   grafana:
-    build:
-      context: ./grafana
-      dockerfile: Dockerfile
+    image: grafana/grafana:latest
     container_name: grafana
     user: "472:472"
     ports:
