@@ -48,7 +48,5 @@
 
     - name: Start the Grafana and Prometheus containers
       command: docker-compose up -d
-      async: 50
-      poll: 0
       args:
         chdir: /home/devops
