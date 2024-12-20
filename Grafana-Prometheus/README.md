@@ -97,7 +97,7 @@ Job Steps:
 1. Checkout Code: Pull the latest code from the GitHub repository.
 2. Run Ansible Playbooks: Configure the job to run the Ansible playbooks for Node Exporter and Grafana-Prometheus setup.
 
-## Playbook Configuration 
+## Ansible Playbook
 
 Create a 'grafana-prometheus.yml' file with the following content:
 
