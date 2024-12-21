@@ -1,0 +1,58 @@
+---
+- name: Node Exporter config
+  hosts: all
+  gather_facts: no
+  ignore_unreachable: yes
+  tasks:
+    - name: Running Node Exporter Configuration
+      get_url:
+        url: https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+        dest: /root/node_exporter-1.8.2.linux-amd64.tar.gz
+
+    - name: Extracting the downloaded Node Exporter
+      unarchive:
+        src: /root/node_exporter-1.8.2.linux-amd64.tar.gz 
+        dest: /root/
+        remote_src: yes
+
+    - name: Kill existing Node Exporter processes 
+      shell: pkill -f node_exporter 
+      ignore_errors: yes
+    
+    - name: Run Node Exporter
+      shell: nohup ./node_exporter > node_exporter.log 2>&1 &
+      args:
+        chdir: /root/node_exporter-1.8.2.linux-amd64
+
+- name: grafana-prometheus playbook config
+  hosts: devops
+  become_user: devops
+  tasks:
+    - name: Copy Docker Compose file
+      copy:
+        src: /home/ansible/DEVOPS/DevOps/Grafana-Prometheus/docker-compose.yml
+        dest: /home/devops/docker-compose.yml
+
+    - name: Ensure Prometheus configuration directory exists
+      file:
+        path: /home/devops/prometheus
+        state: directory
+
+    - name: Copy Prometheus configuration file
+      copy:
+        src: /home/ansible/DEVOPS/DevOps/Grafana-Prometheus/prometheus/prometheus.yml
+        dest: /home/devops/prometheus/prometheus.yml
+
+    - name: Ensure Grafana data directory exists
+      file:
+        path: /home/devops/grafana
+        state: directory
+
+    - name: Start the Grafana and Prometheus containers by Removing existing Containers
+      shell: |
+        docker-compose down
+        docker rmi prom/prometheus:latest
+        docker rmi grafana/grafana:latest
+        docker-compose up -d
+      args:
+        chdir: /home/devops
