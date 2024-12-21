@@ -2,7 +2,7 @@
 
 This project sets up a **Grafana** and **Prometheus** monitoring stack running inside Docker containers using `docker-compose`. It also includes **Node Exporter** for system metrics collection and **Jenkins** for automating the build and deployment processes. The Jenkins agent node also serves as the **Ansible control node** for configuring and deploying services.
 
-![image](https://github.com/user-attachments/assets/a4779677-688e-46b6-a710-d688223f6f71)
+![CI-CD](https://github.com/user-attachments/assets/9de1637c-dd1d-4e1a-9562-eb7e8e110b44)
 
 ## Table of Contents
 - [Project Overview](#project-overview)
