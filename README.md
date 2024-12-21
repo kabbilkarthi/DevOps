@@ -83,11 +83,11 @@ scrape_configs:
   - job_name: 'node_exporter'
     static_configs:
       - targets:
-        - '192.168.29.28:9100' # Node exporter running
-        - '192.168.29.58:9100' # Node exporter running
-        - '192.168.29.128:9100' # Node exporter running
-        - '192.168.29.174:9100' # Node exporter running
-        - '192.168.29.234:9100' # Node exporter running
+        - '192.168.29.28:9100'
+        - '192.168.29.58:9100' 
+        - '192.168.29.128:9100' 
+        - '192.168.29.174:9100' 
+        - '192.168.29.234:9100' 
 ``` 
 ## Jenkins Configuration
 
