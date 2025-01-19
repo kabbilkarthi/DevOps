@@ -147,10 +147,14 @@ Create a 'grafana-prometheus.yml' file with the following content:
         src: /home/ansible/DEVOPS/DevOps/Grafana-Prometheus/prometheus/prometheus.yml
         dest: /home/devops/prometheus/prometheus.yml
 
-    - name: Ensure Grafana data directory exists
+    - name: Ensure Grafana data directory exists with 472 ownership
       file:
         path: /home/devops/grafana
         state: directory
+        owner: 472
+        group: 472
+        become: true
+        become_user: root
 
     - name: Start the Grafana and Prometheus containers by Removing existing Containers
       shell: |
